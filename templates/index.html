@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Algoritma Evolusi</title>
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+          $('[data-toggle="tooltip"]').tooltip();
+        });
+        </script>
+</head>
+<body>
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <h4 style="font-weight: bold; color: white;">Algoritma Evolusi</h4>
+        </nav>
+    </div>
+    <div class="container">
+        <div class="body" style="margin-top: 2.5rem; margin-bottom: 2.5rem;">
+            <div class="row">
+                <div class="col">
+                    <label for="pop_size" style="font-weight: bold;">Population:</label>
+                    <input id = 'pop_size' type="number" class="form-control" id="populate" value="10">
+                </div>
+                <div class="col">
+                    <label for="crossover_rate" style="font-weight: bold;">Crossover Rate:</label>
+                    <input id ='crossover_rate' type="number" class="form-control" value="0.5">
+                </div>
+                <div class="col">
+                    <label for="mutation_rate" style="font-weight: bold;">Mutation Rate:</label>
+                    <input id ='mutation_rate'type="number" class="form-control" value="0.1">
+                </div>
+                <div class="col">
+                    <label for="iter" style="font-weight: bold;">Number of Iteration:</label>
+                    <input id='iter' type="number" class="form-control"value="8">
+                </div>
+            </div>
+            
+            <div class="row" style="margin-top: 3em;">
+                <div class="col">
+                    <div class="row">
+                        <div class="col">
+                            <label style="font-size: 1.5rem; font-weight: bold;">Machine</label>
+                        </div>
+                        <div class="col" style="text-align: -webkit-right; font-size: x-large;">
+                            <a onclick="addMachine()" data-toggle="tooltip" data-placement="top" title="Add Machine">
+                                <i class="fa fa-plus" style="font-size:24px; color: black;"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <hr style="margin-top: 1px;">
+                    <div class="machine-header">
+                        <div class="row">
+                            <div class="col">
+                                <label style="font-weight: bold;">Name:</label>
+                            </div>
+                            <div class="col">
+                                <label style="font-weight: bold;">Speed:</label>
+                            </div>
+                            <div class="col-sm-1">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div id = "machine_list" class="machine-body">
+                        <div class="row" style="margin-bottom: 0.5rem;">
+                            <div class="col">
+                                <input type="text" class="form-control" required>
+                            </div>
+                            <div class="col">
+                                <input type="number" class="form-control" required>
+                            </div>
+                            <div class="col-sm-1" style="text-align: -webkit-right; font-size: x-large;">
+                                <a onclick="deleteMachine(this)" data-placement="right" title="Delete Row">
+                                    <i class="fa fa-remove" style="font-size:24px; color: black;"></i>
+                                </a>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+
+                <div class="col-sm-1"></div>
+                <div class="col">
+                    <div class="row">
+                        <div class="col">
+                            <label style="font-size: 1.5rem; font-weight: bold;">Process</label>
+                        </div>
+                        <div class="col" style="text-align: -webkit-right; font-size: x-large;">
+                            <a onclick="addProcess()" data-toggle="tooltip" data-placement="top" title="Add Process">
+                                <i class="fa fa-plus" style="font-size:24px; color: black;"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <hr style="margin-top: 1px; ">
+                    <div class="process-header">
+                        <div class="row">
+                            <div class="col">
+                                <label style="font-weight: bold;">Name:</label>
+                            </div>
+                            <div class="col">
+                                <label style="font-weight: bold;">Length:</label>
+                            </div>
+                            <div class="col-sm-1">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div id="process_list" class="process-body">
+                        <div class="row" style="margin-bottom: 0.5rem;">
+                            <div class="col">
+                                <input type="text" class="form-control" required>
+                            </div>
+                            <div class="col">
+                                <input type="number" class="form-control" required>
+                            </div>
+                            <div class="col-sm-1" style="text-align: -webkit-right; font-size: x-large;">
+                                <a onclick="deleteProcess(this)" data-placement="right" title="Delete Row">
+                                    <i class="fa fa-remove" style="font-size:24px; color: black;"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            
+            <div class="generate" style="margin-top: 3rem; text-align: -webkit-center;">
+                <button onclick="generate()" class="btn btn-dark" role="button" style="width: 10rem; border-radius: 12px; font-size: 1.3rem;">Generate</button>
+            </div>
+
+            <div class="table-responsive-sm" style="margin-left: 3rem; margin-right: 3rem; margin-top: 3rem;">
+                <table class="table table-bordered" style="border: 2px;">
+                    <thead >
+                        <tr>
+                            <th>Chromosome</th>
+                            <th>Result</th>
+                            <th>Fitness</th>
+                        </tr>
+                    </thead>
+                    <tbody id='tbody'>
+                        
+                        
+                    </tbody>
+            </div>
+        </div>
+    </div>
+    <script>
+        let row_machine_html = `
+            <div class="row" style="margin-bottom: 0.5rem;">
+                <div class="col">
+                    <input type="text" class="form-control" required>
+                </div>
+                <div class="col">
+                    <input type="number" class="form-control" required>
+                </div>
+                <div class="col-sm-1" style="text-align: -webkit-right; font-size: x-large;">
+                    <a onclick="deleteMachine(this)" data-placement="right" title="Delete Row">
+                        <i class="fa fa-remove" style="font-size:24px; color: black;"></i>
+                    </a>
+                </div>
+            </div>`
+        
+        let row_process_html = `
+            <div class="row" style="margin-bottom: 0.5rem;">
+                <div class="col">
+                    <input type="text" class="form-control" required>
+                </div>
+                <div class="col">
+                    <input type="number" class="form-control" required>
+                </div>
+                <div class="col-sm-1" style="text-align: -webkit-right; font-size: x-large;">
+                    <a onclick="deleteProcess(this)" data-placement="right" title="Delete Row">
+                        <i class="fa fa-remove" style="font-size:24px; color: black;"></i>
+                    </a>
+                </div>
+            </div>
+        `
+        let result_row_html = (chr, res ,fit) => `
+        <tr>
+            <td>[${chr}]</td>
+            <td>${res}</td>
+            <td>${fit}</td>
+        </tr>
+        `
+        
+        function addMachine(){
+            let machine = document.getElementById('machine_list')
+            machine.insertAdjacentHTML('beforeend', row_machine_html)
+        }
+
+        function deleteMachine(self){
+            let to_be_deleted = self.parentElement.parentElement
+            let machine = document.getElementById('machine_list')
+            machine.removeChild(to_be_deleted)
+        }
+
+        function addProcess(){
+            let machine = document.getElementById('process_list')
+            machine.insertAdjacentHTML('beforeend', row_process_html)
+        }
+
+        function deleteProcess(self){
+            let to_be_deleted = self.parentElement.parentElement
+            let machine = document.getElementById('process_list')
+            machine.removeChild(to_be_deleted)
+        }
+
+        function parseInput(){
+            let pop_size = Number(document.getElementById('pop_size').value)
+            let crossover_rate = Number(document.getElementById('crossover_rate').value)
+            let mutation_rate = Number(document.getElementById('mutation_rate').value)
+            let iteration = Number(document.getElementById('iter').value)
+            let machines = []
+            let machine_div = document.getElementById('machine_list')
+            for (child of machine_div.children){
+                let input = child.children
+                let name = input[0].children[0].value
+                let speed = Number(input[1].children[0].value)
+                machines.push({name, speed})    
+            }
+
+            let processes = []
+            let process_div = document.getElementById('process_list')
+            for (child of process_div.children){
+                let input = child.children
+                let name = input[0].children[0].value
+                let length = Number(input[1].children[0].value)
+                processes.push({name, processLength:length})    
+            }
+            
+            return {
+                pop_size,
+                crossover_rate,
+                mutation_rate,
+                iteration,
+                machines,
+                processes
+            }
+        }
+        function generate(){
+            let parseResult = (chromosome, machines, processes) => {
+                let map = new Map()
+                for (let [i, c] of chromosome.entries()){
+                    let val = map.get(c)
+                    if (val == undefined){
+                        val = []
+                    }
+                    val.push(processes[i])
+                    map.set(c, val)
+                }
+
+                str = ""
+                for (let [key, value] of map ){
+                    mac = machines[key]
+                    str += `${mac.name}(${mac.speed}) : [${value.map(x => x.name+"("+x.processLength+")")}] <br>`
+                }
+                return str
+            }
+
+            let showResult = json_result => {
+                console.log(json_result)
+                let body = document.getElementById('tbody')
+                for (let [i, individu] of json_result.population.entries()){
+                    let chr = individu
+                    let fit = json_result.fitness[i]
+
+                    result = parseResult(individu, json_result.machines, json_result.processes)
+                    let html_row = result_row_html(chr, result,  fit)
+                    body.insertAdjacentHTML('beforeend', html_row)
+                    
+                }
+                
+            }
+            let input = parseInput()
+            console.log(input)
+            $.ajax({
+                url:'/result/',
+                type:'POST',
+                contentType:'application/json',
+                data: JSON.stringify(input),
+                dataType: 'json',
+                timeout: 15000
+                })
+                .done(showResult)
+                .fail(()=>{
+                    console.log("fail")
+                })
+        }
+    </script> 
+</body>
+</html>
